@@ -1,15 +1,21 @@
 const { Router } = require("express");
 const passport = require("passport");
-const { signupGet, signupPost } = require("../controllers/authController");
+const {
+  signupGet,
+  signupPost,
+  loginGet,
+} = require("../controllers/authController");
 const authRouter = Router();
 
-authRouter.get(
+authRouter.get("/login", loginGet);
+authRouter.post(
   "/login",
   passport.authenticate("local", {
     successRedirect: "/",
     failureRedirect: "/",
   }),
 );
+
 authRouter.get("/signup", signupGet);
 authRouter.post("/signup", signupPost);
 

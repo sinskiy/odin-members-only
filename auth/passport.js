@@ -1,4 +1,3 @@
-const pool = require("../db/pool");
 const passport = require("passport");
 const LocalStrategy = require("passport-local").Strategy;
 const bcrypt = require("bcryptjs");
@@ -36,9 +35,4 @@ passport.deserializeUser(async (userId, done) => {
   } catch (err) {
     done(err);
   }
-  User.findById(userId)
-    .then((user) => {
-      done(null, user);
-    })
-    .catch((err) => done(err));
 });

@@ -2,8 +2,12 @@ const bcrypt = require("bcryptjs");
 const { body, validationResult } = require("express-validator");
 const { getUserByUsername, insertUser } = require("../db/queries");
 
+function loginGet(req, res) {
+  res.render("login");
+}
+
 async function signupGet(req, res) {
-  res.render("signup", { title: "Sign up" });
+  res.render("signup");
 }
 
 const validateUser = [
@@ -65,4 +69,4 @@ const signupPost = [
   },
 ];
 
-module.exports = { signupGet, signupPost };
+module.exports = { loginGet, signupGet, signupPost };

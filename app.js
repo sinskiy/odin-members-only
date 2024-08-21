@@ -10,6 +10,7 @@ const pool = require("./db/pool");
 const pgSession = require("connect-pg-simple")(session);
 
 const express = require("express");
+const passport = require("passport");
 const app = express();
 app.use(express.urlencoded({ extended: true }));
 
@@ -29,6 +30,8 @@ app.use(
     },
   }),
 );
+require("./auth/passport");
+app.use(passport.session());
 
 app.use("/", indexRouter);
 app.use("/", authRouter);
