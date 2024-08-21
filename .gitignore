@@ -1,0 +1,5 @@
+# unnecessary
+node_modules/
+package-lock.json
+# secret
+.env
