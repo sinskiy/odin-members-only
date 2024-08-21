@@ -2,7 +2,7 @@ const pool = require("../db/pool");
 const passport = require("passport");
 const LocalStrategy = require("passport-local").Strategy;
 const bcrypt = require("bcryptjs");
-const { getUserByUsername } = require("../db/queries");
+const { getUserByUsername, getUserById } = require("../db/queries");
 
 passport.use(
   new LocalStrategy(async (username, password, done) => {
@@ -24,3 +24,21 @@ passport.use(
     }
   }),
 );
+
+passport.serializeUser((user, done) => {
+  done(null, user.id);
+});
+
+passport.deserializeUser(async (userId, done) => {
+  try {
+    const user = await getUserById(userId);
+    done(null, user);
+  } catch (err) {
+    done(err);
+  }
+  User.findById(userId)
+    .then((user) => {
+      done(null, user);
+    })
+    .catch((err) => done(err));
+});

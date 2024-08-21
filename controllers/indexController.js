@@ -1,5 +1,5 @@
 function indexGet(req, res) {
-  res.render("index", { title: "Home" });
+  res.render("index", { user: req.user });
 }
 
 module.exports = { indexGet };

@@ -1,0 +1,29 @@
+.errors {
+  margin-bottom: 1rem;
+}
+
+.form {
+  display: grid;
+  gap: 1rem;
+}
+
+.input-field {
+  display: grid;
+  gap: 0.5rem;
+}
+
+input.styled,
+select.styled {
+  max-width: fit-content;
+  min-width: 0;
+  padding: 0.5rem 1rem;
+  outline: 1px solid var(--outline);
+
+  background-color: var(--surface);
+  border-radius: var(--rounded-card);
+  font-size: 2rem;
+}
+input.styled:focus,
+select.styled:focus {
+  outline: 2px solid var(--primary);
+}
