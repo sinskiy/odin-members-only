@@ -10,6 +10,11 @@ app.use(express.static(path.join(__dirname, "public")));
 
 app.get("/", (req, res) => res.render("index", { title: "Home" }));
 
+app.use((err, req, res, next) => {
+  console.error(err);
+  res.status(500).send(err.message);
+});
+
 app.listen(process.env.PORT, () =>
   console.log(`http://${process.env.HOSTNAME}:${process.env.PORT}`),
 );
