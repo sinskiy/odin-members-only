@@ -2,6 +2,7 @@ require("dotenv").config();
 const path = require("node:path");
 
 const express = require("express");
+const errorHandler = require("./controllers/errorController");
 const app = express();
 app.use(express.urlencoded({ extended: true }));
 app.set("views", path.join(__dirname, "views"));
@@ -10,10 +11,7 @@ app.use(express.static(path.join(__dirname, "public")));
 
 app.get("/", (req, res) => res.render("index", { title: "Home" }));
 
-app.use((err, req, res, next) => {
-  console.error(err);
-  res.status(500).send(err.message);
-});
+app.use(errorHandler);
 
 app.listen(process.env.PORT, () =>
   console.log(`http://${process.env.HOSTNAME}:${process.env.PORT}`),
