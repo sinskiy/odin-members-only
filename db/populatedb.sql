@@ -23,9 +23,9 @@ CREATE TABLE IF NOT EXISTS users (
 );
 
 CREATE VIEW users_clubs AS
-  SELECT clubs.name AS club, username, club_id, users.id AS id, is_admin
+  SELECT clubs.name AS club, username, club_id, users.id AS id, is_admin, password
   FROM users
-  JOIN clubs ON users.club_id = clubs.id;
+  FULL JOIN clubs ON users.club_id = clubs.id;
 
 CREATE TABLE IF NOT EXISTS messages (
   id INT PRIMARY KEY GENERATED ALWAYS AS IDENTITY,

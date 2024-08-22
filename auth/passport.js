@@ -9,12 +9,14 @@ passport.use(
       const user = await getUserByUsername(username);
 
       if (!user) {
-        done(null, false, { message: "No user found with this username." });
+        return done(null, false, {
+          message: "No user found with this username.",
+        });
       }
 
       const match = bcrypt.compare(password, user.password);
       if (!match) {
-        done(null, false, { message: "Password doesn't match" });
+        return done(null, false, { message: "Password doesn't match" });
       }
 
       done(null, user);

@@ -27,6 +27,7 @@ const validateUser = [
     .withMessage("Username must be between 1 and 30 characters.")
     .custom(async (value) => {
       const user = await getUserByUsername(value);
+      console.log({ userExists: user, value });
       if (user) {
         throw new Error("Username must be unique.");
       }
@@ -68,13 +69,13 @@ const signupPost = [
         next(err);
       }
       try {
-        await insertUser({
+        await insertUser(
           username,
           firstName,
           lastName,
-          password: hashedPassword,
-          isAdmin,
-        });
+          hashedPassword,
+          isAdmin ?? false,
+        );
         res.redirect("/");
       } catch (err) {
         next(err);
@@ -83,4 +84,9 @@ const signupPost = [
   },
 ];
 
-module.exports = { loginGet, logoutPost, signupGet, signupPost };
+function isUser(req, res, next) {
+  if (!req.user) return res.redirect("/signup");
+  next();
+}
+
+module.exports = { loginGet, logoutPost, signupGet, signupPost, isUser };

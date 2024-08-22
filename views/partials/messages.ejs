@@ -5,7 +5,11 @@
     <article>
       <% if (locals.user && (user.is_admin || user.club_id === message.club_id)) { %>
       <header class="message-header">
-        <h3 class="username"><%= message.username %></h3>
+        <h3 class="username">
+          <%= message.username %> <% if (user.is_admin) { %>
+          <i style="font-weight: 400">(<%= message.club %>)</i>
+          <% } %>
+        </h3>
         <time datetime="<%= message.created_at %>"
           ><small
             ><%= new Date(message.created_at).toLocaleString() %></small

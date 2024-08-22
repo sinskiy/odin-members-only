@@ -28,13 +28,7 @@ async function getUserById(id) {
   return user;
 }
 
-async function insertUser({
-  username,
-  firstName,
-  lastName,
-  password,
-  isAdmin,
-}) {
+async function insertUser(username, firstName, lastName, password, isAdmin) {
   await pool.query(
     "INSERT INTO users (username, first_name, last_name, password, is_admin) VALUES ($1, $2, $3, $4, $5)",
     [username, firstName, lastName, password, isAdmin],
@@ -49,13 +43,15 @@ async function updateUserClubId(userId, clubId) {
 }
 
 async function getAllMessages() {
-  const { rows } = await pool.query("SELECT * FROM messages_joined");
+  const { rows } = await pool.query(
+    "SELECT * FROM messages_joined ORDER BY created_at DESC",
+  );
   return rows;
 }
 
 async function getMessagesByClubId(id) {
   const { rows } = await pool.query(
-    "SELECT * FROM messages_joined WHERE club_id = $1",
+    "SELECT * FROM messages_joined WHERE club_id = $1 ORDER BY created_at DESC",
     [id],
   );
   return rows;

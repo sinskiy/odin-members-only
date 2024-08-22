@@ -57,10 +57,19 @@ const newMessagePost = [
   },
 ];
 
+async function joinClubAdminGet(req, res, next) {
+  if (!req.user.is_admin) return next();
+  try {
+    await updateUserClubId(req.user.id, req.params.clubId);
+    res.redirect("/");
+  } catch (err) {
+    next(err);
+  }
+}
+
 async function joinClubGet(req, res, next) {
   try {
     const club = await getClubById(req.params.clubId);
-    // TODO: check if admin, non-user or already in club
     res.render("join", { user: req.user, club });
   } catch (err) {
     next(err);
@@ -99,6 +108,7 @@ module.exports = {
   clubMessagesGet,
   newMessageGet,
   newMessagePost,
+  joinClubAdminGet,
   joinClubGet,
   joinClubPost,
 };
