@@ -1,6 +1,6 @@
-<header>
+<header class="header">
   <a href="/" aria-label="home" class="styled logo">members only</a>
-  <nav>
+  <nav class="nav">
     <% if (locals.user) { %>
     <a href="/users/<%= user.username %>" aria-label="profile" class="styled"
       ><%= user.username %></a

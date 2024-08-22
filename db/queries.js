@@ -49,7 +49,7 @@ async function updateUserClubId(userId, clubId) {
 }
 
 async function getAllMessages() {
-  const { rows } = await pool.query("SELECT * FROM messages");
+  const { rows } = await pool.query("SELECT * FROM messages_joined");
   return rows;
 }
 
@@ -61,6 +61,13 @@ async function getMessagesByClubId(id) {
   return rows;
 }
 
+async function insertMessage(userId, clubId, title, text) {
+  await pool.query(
+    "INSERT INTO messages (user_id, club_id, title, text) VALUES ($1, $2, $3, $4)",
+    [userId, clubId, title, text],
+  );
+}
+
 module.exports = {
   getAllClubs,
   getClubById,
@@ -70,4 +77,5 @@ module.exports = {
   updateUserClubId,
   getAllMessages,
   getMessagesByClubId,
+  insertMessage,
 };

@@ -2,24 +2,18 @@
 <html lang="en">
   <head>
     <%- include('partials/head', { title: "Home" }) %>
+    <link rel="stylesheet" href="messages.css" />
   </head>
   <body>
     <%- include('partials/nav') %>
     <main>
       <a href="/clubs" class="styled">clubs</a>
-      <% if (locals.messages.length > 0) { %>
-      <ul role="list" class="clubs">
-        <% messages.forEach(message => { %>
-        <li class="club">
-          <article>
-            <h2><%= message.username %></h2>
-          </article>
-        </li>
-        <% }) %>
-      </ul>
-      <% } else { %>
-      <h1>no messages available</h1>
+      <% if (locals.user && user.club_id != null) { %>
+      <a href="/clubs/<%= user.club_id %>/message" class="styled"
+        >new message</a
+      >
       <% } %>
+      <%- include('partials/messages') %>
     </main>
   </body>
 </html>

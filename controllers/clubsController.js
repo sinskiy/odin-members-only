@@ -4,6 +4,7 @@ const {
   getClubById,
   updateUserClubId,
   getMessagesByClubId,
+  insertMessage,
 } = require("../db/queries");
 
 async function clubsGet(req, res, next) {
@@ -24,6 +25,37 @@ async function clubMessagesGet(req, res, next) {
     next(err);
   }
 }
+
+function newMessageGet(req, res) {
+  res.render("message", { user: req.user });
+}
+
+const validateNewMessage = [
+  body("title")
+    .isLength({ min: 1, max: 30 })
+    .withMessage("Title length must be between 1 and 30 characters"),
+  body("text")
+    .isLength({ min: 1, max: 255 })
+    .withMessage("Text length must be between 1 and 255 characters"),
+];
+const newMessagePost = [
+  validateNewMessage,
+  async (req, res, next) => {
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+      return res
+        .status(400)
+        .render("message", { user: req.user, errors: errors.array() });
+    }
+    const { title, text } = req.body;
+    try {
+      await insertMessage(req.user.id, req.params.clubId, title, text);
+      res.redirect("/");
+    } catch (err) {
+      next(err);
+    }
+  },
+];
 
 async function joinClubGet(req, res, next) {
   try {
@@ -62,4 +94,11 @@ const joinClubPost = [
   },
 ];
 
-module.exports = { clubsGet, clubMessagesGet, joinClubGet, joinClubPost };
+module.exports = {
+  clubsGet,
+  clubMessagesGet,
+  newMessageGet,
+  newMessagePost,
+  joinClubGet,
+  joinClubPost,
+};

@@ -1,0 +1,24 @@
+<% if (locals.messages.length > 0) { %>
+<ul role="list" class="messages">
+  <% messages.forEach(message => { %>
+  <li class="message">
+    <article>
+      <header class="message-header">
+        <h3 class="username"><%= message.username %></h3>
+        <time datetime="<%= message.created_at %>"
+          ><small
+            ><%= new Date(message.created_at).toLocaleString() %></small
+          ></time
+        >
+      </header>
+      <main>
+        <h2 class="title"><%= message.title %></h2>
+        <p class="text"><%= message.text %></p>
+      </main>
+    </article>
+  </li>
+  <% }) %>
+</ul>
+<% } else { %>
+<h1>no messages available</h1>
+<% } %>

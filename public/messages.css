@@ -1,0 +1,16 @@
+.messages {
+  margin-top: 1rem;
+
+  display: grid;
+  gap: 0.5rem;
+}
+
+.message {
+  padding: 2rem;
+  background-color: var(--surface);
+  border-radius: var(--rounded-card);
+}
+
+.message-header {
+  margin-bottom: 1rem;
+}

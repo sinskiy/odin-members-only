@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <%- include('partials/head', { title: "New message" }) %>
+    <link rel="stylesheet" href="/form.css" />
+  </head>
+  <body>
+    <%- include('partials/nav') %>
+    <main>
+      <%- include('partials/errors') %>
+      <%# TOOD: check if user, admin and/or member %>
+      <form
+        action="/clubs/<%= user.club_id %>/message"
+        method="post"
+        class="form"
+      >
+        <div class="input-field">
+          <label for="title">title</label>
+          <input
+            type="text"
+            name="title"
+            id="title"
+            placeholder="Hello world!"
+            class="styled"
+          />
+        </div>
+        <div class="input-field">
+          <label for="text">text</label>
+          <textarea type="text" name="text" id="text" class="styled"></textarea>
+        </div>
+        <button type="submit" class="styled primary">submit</button>
+      </form>
+    </main>
+  </body>
+</html>

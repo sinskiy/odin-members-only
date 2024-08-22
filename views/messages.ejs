@@ -1,25 +1,13 @@
 <!doctype html>
 <html lang="en">
   <head>
-    <%- include('partials/head', { title: "Clubs" }) %>
-    <link rel="stylesheet" href="/clubs.css" />
+    <%- include('partials/head', { title: "" }) %>
+    <link rel="stylesheet" href="/messages.css" />
   </head>
   <body>
     <%- include('partials/nav') %>
     <main>
-      <% if (locals.messages.length > 0) { %>
-      <ul role="list" class="clubs">
-        <% messages.forEach(message => { %>
-        <li class="club">
-          <article>
-            <h2><%= message.username %></h2>
-          </article>
-        </li>
-        <% }) %>
-      </ul>
-      <% } else { %>
-      <h1>no messages available</h1>
-      <% } %>
+      <%- include('partials/messages') %>
     </main>
   </body>
 </html>

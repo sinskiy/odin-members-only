@@ -18,7 +18,8 @@
 }
 
 input.styled,
-select.styled {
+select.styled,
+textarea.styled {
   max-width: fit-content;
   min-width: 0;
   padding: 0.5rem 1rem;
@@ -29,6 +30,7 @@ select.styled {
   font-size: 2rem;
 }
 input.styled:focus,
-select.styled:focus {
+select.styled:focus,
+textarea.styled:focus {
   outline: 2px solid var(--primary);
 }

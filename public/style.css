@@ -32,6 +32,9 @@ body {
     "Helvetica Neue",
     sans-serif;
 }
+small {
+  color: var(--text-variation);
+}
 
 /* interactive elements */
 button,
@@ -82,23 +85,29 @@ a.styled {
 a.styled:hover {
   text-decoration: none;
 }
+.text {
+  line-height: 1.5;
+  max-width: 75ch;
+  color: var(--text-variation);
+}
 
 /* layout styling */
 body {
   margin: 2rem auto;
   max-width: 1024px;
 }
-header {
+.header {
   display: grid;
   grid-template-columns: 1fr auto;
   align-items: center;
   margin-bottom: 1.5rem;
 }
-header ul {
+.header nav {
   display: flex;
   flex-wrap: wrap;
+  gap: 1rem;
 }
-header .logo {
+.header .logo {
   font-size: 2rem;
 }
 
