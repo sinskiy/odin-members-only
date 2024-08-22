@@ -4,6 +4,7 @@
     <%- include('partials/head', { title: "Home" }) %>
   </head>
   <body>
+    <%- include('partials/nav') %>
     <% if (locals.user) { %>
     <h2><%= user.username %></h2>
     <% } else { %>
