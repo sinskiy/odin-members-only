@@ -41,7 +41,6 @@ app.use((req, res, next) => {
 app.use("/", indexRouter);
 app.use("/", clubsRouter);
 app.use("/", authRouter);
-// TODO: middleware: isUser, isAdmin
 
 app.use(errorHandler);
 

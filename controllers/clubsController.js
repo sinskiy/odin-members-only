@@ -16,8 +16,10 @@ async function clubsGet(req, res, next) {
   }
 }
 
-// TODO: experiment and check if I can pass gotten club to joinClubGet
 async function clubMessagesGet(req, res, next) {
+  if (req.user.club_id !== req.params.clubId) {
+    return res.redirect(`/clubs/${req.params.clubId}/join`);
+  }
   try {
     const messages = await getMessagesByClubId(req.params.clubId);
     res.render("messages", { user: req.user, messages });
@@ -58,7 +60,7 @@ const newMessagePost = [
 ];
 
 async function joinClubAdminGet(req, res, next) {
-  if (!req.user.is_admin) return next();
+  if (!req.user || !req.user.is_admin) return next();
   try {
     await updateUserClubId(req.user.id, req.params.clubId);
     res.redirect("/");
