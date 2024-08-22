@@ -5,6 +5,9 @@
     <a href="/users/<%= user.username %>" aria-label="profile" class="styled"
       ><%= user.username %></a
     >
+    <% if (user.club) { %>
+    <a href="/clubs/<%= user.club %>" class="styled"><%= user.club %></a>
+    <% } %>
     <% } else { %>
     <a href="/login" class="styled">log in</a>
     <a href="/signup" class="styled">sign up</a>

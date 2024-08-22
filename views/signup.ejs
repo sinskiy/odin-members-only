@@ -5,52 +5,55 @@
     <link rel="stylesheet" href="/form.css" />
   </head>
   <body>
-    <%- include('partials/errors') %>
-    <form action="/signup" method="post" class="form">
-      <div class="input-field">
-        <label for="username">username</label>
-        <input
-          type="text"
-          name="username"
-          id="username"
-          placeholder="sinskiy"
-          class="styled"
-        />
-      </div>
-      <div class="input-field">
-        <label for="firstName">first name</label>
-        <input
-          type="text"
-          name="firstName"
-          id="firstName"
-          placeholder="john"
-          class="styled"
-        />
-      </div>
-      <div class="input-field">
-        <label for="lastName">last name</label>
-        <input
-          type="text"
-          name="lastName"
-          id="lastName"
-          placeholder="galt"
-          class="styled"
-        />
-      </div>
-      <div class="input-field">
-        <label for="password">password</label>
-        <input type="password" name="password" id="password" class="styled" />
-      </div>
-      <div class="input-field">
-        <label for="confirm-password">confirm password</label>
-        <input
-          type="password"
-          name="confirm-password"
-          id="confirm-password"
-          class="styled"
-        />
-      </div>
-      <button type="submit" class="styled primary">sign up</button>
-    </form>
+    <%- include('partials/nav') %>
+    <main>
+      <%- include('partials/errors') %>
+      <form action="/signup" method="post" class="form">
+        <div class="input-field">
+          <label for="username">username</label>
+          <input
+            type="text"
+            name="username"
+            id="username"
+            placeholder="sinskiy"
+            class="styled"
+          />
+        </div>
+        <div class="input-field">
+          <label for="firstName">first name</label>
+          <input
+            type="text"
+            name="firstName"
+            id="firstName"
+            placeholder="john"
+            class="styled"
+          />
+        </div>
+        <div class="input-field">
+          <label for="lastName">last name</label>
+          <input
+            type="text"
+            name="lastName"
+            id="lastName"
+            placeholder="galt"
+            class="styled"
+          />
+        </div>
+        <div class="input-field">
+          <label for="password">password</label>
+          <input type="password" name="password" id="password" class="styled" />
+        </div>
+        <div class="input-field">
+          <label for="confirm-password">confirm password</label>
+          <input
+            type="password"
+            name="confirm-password"
+            id="confirm-password"
+            class="styled"
+          />
+        </div>
+        <button type="submit" class="styled primary">sign up</button>
+      </form>
+    </main>
   </body>
 </html>

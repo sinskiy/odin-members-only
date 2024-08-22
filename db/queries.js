@@ -1,5 +1,10 @@
 const pool = require("./pool");
 
+async function getAllClubs() {
+  const { rows } = await pool.query("SELECT * FROM clubs");
+  return rows;
+}
+
 async function getUserByUsername(username) {
   const { rows } = await pool.query("SELECT * FROM users WHERE username = $1", [
     username,
@@ -21,4 +26,4 @@ async function insertUser({ username, firstName, lastName, password }) {
   );
 }
 
-module.exports = { getUserByUsername, getUserById, insertUser };
+module.exports = { getAllClubs, getUserByUsername, getUserById, insertUser };

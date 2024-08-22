@@ -11,6 +11,7 @@ const pgSession = require("connect-pg-simple")(session);
 
 const express = require("express");
 const passport = require("passport");
+const clubsRouter = require("./routes/clubsRouter");
 const app = express();
 app.use(express.urlencoded({ extended: true }));
 
@@ -34,6 +35,7 @@ require("./auth/passport");
 app.use(passport.session());
 
 app.use("/", indexRouter);
+app.use("/", clubsRouter);
 app.use("/", authRouter);
 // TODO: middleware: isUser, isAdmin
 

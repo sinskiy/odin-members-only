@@ -1,0 +1,10 @@
+.clubs {
+  display: grid;
+  gap: 0.5rem;
+}
+
+.clubs .club {
+  padding: 1rem 2rem;
+  background-color: var(--surface);
+  border-radius: var(--rounded-card);
+}

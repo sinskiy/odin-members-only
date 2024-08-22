@@ -3,9 +3,12 @@ CREATE TABLE IF NOT EXISTS clubs (
   name VARCHAR(30) NOT NULL
 );
 
+INSERT INTO clubs (name) VALUES ('red'), ('green'), ('blue');
+
 CREATE TABLE IF NOT EXISTS users (
   id INT PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
   club_id INT,
+  is_admin BOOLEAN NOT NULL,
   username VARCHAR(30) NOT NULL UNIQUE,
   password VARCHAR(255) NOT NULL,
   first_name VARCHAR(30) NOT NULL,

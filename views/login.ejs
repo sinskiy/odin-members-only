@@ -5,23 +5,26 @@
     <link rel="stylesheet" href="/form.css" />
   </head>
   <body>
-    <%- include('partials/errors') %>
-    <form action="/login" method="post" class="form">
-      <div class="input-field">
-        <label for="username">username</label>
-        <input
-          type="text"
-          name="username"
-          id="username"
-          placeholder="sinskiy"
-          class="styled"
-        />
-      </div>
-      <div class="input-field">
-        <label for="password">password</label>
-        <input type="password" name="password" id="password" class="styled" />
-      </div>
-      <button type="submit" class="styled primary">log in</button>
-    </form>
+    <%- include('partials/nav') %>
+    <main>
+      <%- include('partials/errors') %>
+      <form action="/login" method="post" class="form">
+        <div class="input-field">
+          <label for="username">username</label>
+          <input
+            type="text"
+            name="username"
+            id="username"
+            placeholder="sinskiy"
+            class="styled"
+          />
+        </div>
+        <div class="input-field">
+          <label for="password">password</label>
+          <input type="password" name="password" id="password" class="styled" />
+        </div>
+        <button type="submit" class="styled primary">log in</button>
+      </form>
+    </main>
   </body>
 </html>

@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <%- include('partials/head', { title: "Clubs" }) %>
+    <link rel="stylesheet" href="clubs.css" />
+  </head>
+  <body>
+    <%- include('partials/nav') %>
+    <main>
+      <% if (locals.clubs) { %>
+      <ul role="list" class="clubs">
+        <% clubs.forEach(club => { %>
+        <li class="club">
+          <article>
+            <h2><%= club.name %></h2>
+            <nav>
+              <a href="/clubs/<%= club.id %>/join" class="styled">join</a>
+              <% if (locals.user.is_admin) { %>
+              <a href="/clubs/<%= club.id %>" class="styled">messages</a>
+              <% } %>
+            </nav>
+          </article>
+        </li>
+        <% }) %>
+      </ul>
+      <% } else { %>
+      <h1>no clubs available</h1>
+      <% } %>
+    </main>
+  </body>
+</html>

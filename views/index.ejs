@@ -5,10 +5,8 @@
   </head>
   <body>
     <%- include('partials/nav') %>
-    <% if (locals.user) { %>
-    <h2><%= user.username %></h2>
-    <% } else { %>
-    <h2>not logged in</h2>
-    <% } %>
+    <main>
+      <a href="/clubs" class="styled">clubs</a>
+    </main>
   </body>
 </html>
