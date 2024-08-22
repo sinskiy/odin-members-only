@@ -11,11 +11,11 @@ const {
 const { isUser } = require("../controllers/authController");
 const clubsRouter = Router();
 
-clubsRouter.get("/clubs", clubsGet);
-clubsRouter.get("/clubs/:clubId", isUser, clubMessagesGet);
-clubsRouter.get("/clubs/:clubId/message", newMessageGet);
-clubsRouter.post("/clubs/:clubId/message", newMessagePost);
-clubsRouter.get("/clubs/:clubId/join", isUser, joinClubAdminGet, joinClubGet);
-clubsRouter.post("/clubs/:clubId/join", joinClubPost);
+clubsRouter.get("/", clubsGet);
+clubsRouter.get("/:clubId", isUser, clubMessagesGet);
+clubsRouter.get("/:clubId/message", newMessageGet);
+clubsRouter.post("/:clubId/message", newMessagePost);
+clubsRouter.get("/:clubId/join", isUser, joinClubAdminGet, joinClubGet);
+clubsRouter.post("/:clubId/join", joinClubPost);
 
 module.exports = clubsRouter;

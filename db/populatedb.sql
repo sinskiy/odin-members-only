@@ -43,7 +43,7 @@ CREATE TABLE IF NOT EXISTS messages (
 );
 
 CREATE VIEW messages_joined AS
-  SELECT clubs.name AS club, users.username, messages.club_id AS club_id, messages.title, messages.text, messages.created_at
+  SELECT clubs.name AS club, username, messages.club_id AS club_id, title, text, created_at, messages.id AS id
   FROM messages
   JOIN users ON messages.user_id = users.id
   JOIN clubs ON messages.club_id = clubs.id;

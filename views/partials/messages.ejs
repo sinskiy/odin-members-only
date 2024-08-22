@@ -21,6 +21,15 @@
         <h2 class="title"><%= message.title %></h2>
         <p class="text"><%= message.text %></p>
       </main>
+      <% if (locals.user && user.is_admin) { %>
+      <form
+        action="/messages/<%= message.id %>/delete"
+        method="post"
+        style="margin-top: 1rem"
+      >
+        <button type="submit" class="styled error">delete message</button>
+      </form>
+      <% } %>
     </article>
   </li>
   <% }) %>

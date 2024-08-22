@@ -64,6 +64,10 @@ async function insertMessage(userId, clubId, title, text) {
   );
 }
 
+async function deleteMessageById(id) {
+  await pool.query("DELETE FROM messages WHERE id = $1", [id]);
+}
+
 module.exports = {
   getAllClubs,
   getClubById,
@@ -74,4 +78,5 @@ module.exports = {
   getAllMessages,
   getMessagesByClubId,
   insertMessage,
+  deleteMessageById,
 };

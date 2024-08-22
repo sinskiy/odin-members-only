@@ -12,6 +12,7 @@ const pgSession = require("connect-pg-simple")(session);
 const express = require("express");
 const passport = require("passport");
 const clubsRouter = require("./routes/clubsRouter");
+const messagesRouter = require("./routes/messagesRouter");
 const app = express();
 app.use(express.urlencoded({ extended: true }));
 
@@ -39,7 +40,8 @@ app.use((req, res, next) => {
   next();
 });
 app.use("/", indexRouter);
-app.use("/", clubsRouter);
+app.use("/clubs", clubsRouter);
+app.use("/messages", messagesRouter);
 app.use("/", authRouter);
 
 app.use(errorHandler);
