@@ -18,7 +18,6 @@ async function clubsGet(req, res, next) {
 
 async function clubMessagesGet(req, res, next) {
   if (!req.user.is_admin && req.user.club_id !== req.params.clubId) {
-    console.log(req.user.club_id, req.params.club_id);
     return res.redirect(`/clubs/${req.params.clubId}/join`);
   }
   try {

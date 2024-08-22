@@ -35,10 +35,6 @@ app.use(
 require("./auth/passport");
 app.use(passport.session());
 
-app.use((req, res, next) => {
-  console.log(req.user);
-  next();
-});
 app.use("/", indexRouter);
 app.use("/clubs", clubsRouter);
 app.use("/messages", messagesRouter);
@@ -46,6 +42,4 @@ app.use("/", authRouter);
 
 app.use(errorHandler);
 
-app.listen(process.env.PORT, () =>
-  console.log(`http://${process.env.HOSTNAME}:${process.env.PORT}`),
-);
+app.listen(process.env.PORT);

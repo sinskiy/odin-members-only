@@ -27,7 +27,6 @@ const validateUser = [
     .withMessage("Username must be between 1 and 30 characters.")
     .custom(async (value) => {
       const user = await getUserByUsername(value);
-      console.log({ userExists: user, value });
       if (user) {
         throw new Error("Username must be unique.");
       }
