@@ -88,5 +88,16 @@ function isUser(req, res, next) {
   if (!req.user) return res.redirect("/signup");
   next();
 }
+function isAdmin(req, res, next) {
+  if (!req.user || !req.user.is_admin) return res.redirect("/");
+  next();
+}
 
-module.exports = { loginGet, logoutPost, signupGet, signupPost, isUser };
+module.exports = {
+  loginGet,
+  logoutPost,
+  signupGet,
+  signupPost,
+  isUser,
+  isAdmin,
+};
