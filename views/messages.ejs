@@ -1,12 +1,12 @@
 <!doctype html>
 <html lang="en">
   <head>
-    <%- include('partials/head', { title: "Home" }) %>
+    <%- include('partials/head', { title: "Clubs" }) %>
+    <link rel="stylesheet" href="/clubs.css" />
   </head>
   <body>
     <%- include('partials/nav') %>
     <main>
-      <a href="/clubs" class="styled">clubs</a>
       <% if (locals.messages.length > 0) { %>
       <ul role="list" class="clubs">
         <% messages.forEach(message => { %>

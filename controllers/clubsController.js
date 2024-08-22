@@ -1,5 +1,10 @@
 const { body, validationResult } = require("express-validator");
-const { getAllClubs, getClubById, updateUserClubId } = require("../db/queries");
+const {
+  getAllClubs,
+  getClubById,
+  updateUserClubId,
+  getMessagesByClubId,
+} = require("../db/queries");
 
 async function clubsGet(req, res, next) {
   try {
@@ -10,10 +15,20 @@ async function clubsGet(req, res, next) {
   }
 }
 
+// TODO: experiment and check if I can pass gotten club to joinClubGet
+async function clubMessagesGet(req, res, next) {
+  try {
+    const messages = await getMessagesByClubId(req.params.clubId);
+    res.render("messages", { user: req.user, messages });
+  } catch (err) {
+    next(err);
+  }
+}
+
 async function joinClubGet(req, res, next) {
   try {
     const club = await getClubById(req.params.clubId);
-    // TODO: check if non-user or already in club
+    // TODO: check if admin, non-user or already in club
     res.render("join", { user: req.user, club });
   } catch (err) {
     next(err);
@@ -47,4 +62,4 @@ const joinClubPost = [
   },
 ];
 
-module.exports = { clubsGet, joinClubGet, joinClubPost };
+module.exports = { clubsGet, clubMessagesGet, joinClubGet, joinClubPost };

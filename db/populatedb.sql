@@ -22,6 +22,11 @@ CREATE TABLE IF NOT EXISTS users (
     ON DELETE SET NULL
 );
 
+CREATE VIEW users_clubs AS
+  SELECT clubs.name AS club, username, club_id, users.id AS id, is_admin
+  FROM users
+  JOIN clubs ON users.club_id = clubs.id;
+
 CREATE TABLE IF NOT EXISTS messages (
   id INT PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
   club_id INT NOT NULL,
@@ -38,7 +43,7 @@ CREATE TABLE IF NOT EXISTS messages (
 );
 
 CREATE VIEW messages_joined AS
-  SELECT clubs.name AS club, users.username, messages.title, messages.text, messages.created_at
+  SELECT clubs.name AS club, users.username, messages.club_id AS club_id, messages.title, messages.text, messages.created_at
   FROM messages
   JOIN users ON messages.user_id = users.id
   JOIN clubs ON messages.club_id = clubs.id;

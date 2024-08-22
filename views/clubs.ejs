@@ -2,12 +2,12 @@
 <html lang="en">
   <head>
     <%- include('partials/head', { title: "Clubs" }) %>
-    <link rel="stylesheet" href="clubs.css" />
+    <link rel="stylesheet" href="/clubs.css" />
   </head>
   <body>
     <%- include('partials/nav') %>
     <main>
-      <% if (locals.clubs) { %>
+      <% if (locals.clubs.length > 0) { %>
       <ul role="list" class="clubs">
         <% clubs.forEach(club => { %>
         <li class="club">

@@ -12,15 +12,18 @@ async function getClubById(id) {
 }
 
 async function getUserByUsername(username) {
-  const { rows } = await pool.query("SELECT * FROM users WHERE username = $1", [
-    username,
-  ]);
+  const { rows } = await pool.query(
+    "SELECT * FROM users_clubs WHERE username = $1",
+    [username],
+  );
   const user = rows[0];
   return user;
 }
 
 async function getUserById(id) {
-  const { rows } = await pool.query("SELECT * FROM users WHERE id = $1", [id]);
+  const { rows } = await pool.query("SELECT * FROM users_clubs WHERE id = $1", [
+    id,
+  ]);
   const user = rows[0];
   return user;
 }
@@ -45,6 +48,19 @@ async function updateUserClubId(userId, clubId) {
   ]);
 }
 
+async function getAllMessages() {
+  const { rows } = await pool.query("SELECT * FROM messages");
+  return rows;
+}
+
+async function getMessagesByClubId(id) {
+  const { rows } = await pool.query(
+    "SELECT * FROM messages_joined WHERE club_id = $1",
+    [id],
+  );
+  return rows;
+}
+
 module.exports = {
   getAllClubs,
   getClubById,
@@ -52,4 +68,6 @@ module.exports = {
   getUserById,
   insertUser,
   updateUserClubId,
+  getAllMessages,
+  getMessagesByClubId,
 };

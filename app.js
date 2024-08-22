@@ -34,6 +34,10 @@ app.use(
 require("./auth/passport");
 app.use(passport.session());
 
+app.use((req, res, next) => {
+  console.log(req.user);
+  next();
+});
 app.use("/", indexRouter);
 app.use("/", clubsRouter);
 app.use("/", authRouter);
