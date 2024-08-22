@@ -18,9 +18,9 @@
               <% if (user.is_admin || user.club_id === club.id) { %>
               <a href="/clubs/<%= club.id %>" class="styled">messages</a>
               <% } %>
-              <% if (user.club_id !== club.id) { %>
-              <a href="/clubs/<%= club.id %>/join" class="styled">join</a>
               <% } %>
+              <% if (!locals.user || user.club_id !== club.id) { %>
+              <a href="/clubs/<%= club.id %>/join" class="styled">join</a>
               <% } %>
             </nav>
           </article>

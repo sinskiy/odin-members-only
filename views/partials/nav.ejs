@@ -2,9 +2,12 @@
   <a href="/" aria-label="home" class="styled logo">members only</a>
   <nav class="nav">
     <% if (locals.user) { %>
-    <a href="/users/<%= user.username %>" aria-label="profile" class="styled"
-      ><%= user.username %></a
-    >
+    <p style="padding: 0.5rem; font-weight: 500"><%= user.username %></p>
+    <form action="/logout" method="post">
+      <button type="submit" class="styled error" style="padding: 0.5rem 2rem">
+        logout
+      </button>
+    </form>
     <% if (user.club_id) { %>
     <a href="/clubs/<%= user.club_id %>" class="styled"><%= user.club %></a>
     <% } %>

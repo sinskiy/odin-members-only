@@ -6,6 +6,15 @@ function loginGet(req, res) {
   res.render("login");
 }
 
+function logoutPost(req, res, next) {
+  req.logout((err) => {
+    if (err) {
+      return next(err);
+    }
+    res.redirect("/");
+  });
+}
+
 async function signupGet(req, res) {
   res.render("signup");
 }
@@ -74,4 +83,4 @@ const signupPost = [
   },
 ];
 
-module.exports = { loginGet, signupGet, signupPost };
+module.exports = { loginGet, logoutPost, signupGet, signupPost };

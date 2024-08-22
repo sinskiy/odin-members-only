@@ -4,6 +4,7 @@ const {
   signupGet,
   signupPost,
   loginGet,
+  logoutPost,
 } = require("../controllers/authController");
 const authRouter = Router();
 
@@ -15,6 +16,7 @@ authRouter.post(
     failureRedirect: "/",
   }),
 );
+authRouter.post("/logout", logoutPost);
 
 authRouter.get("/signup", signupGet);
 authRouter.post("/signup", signupPost);
