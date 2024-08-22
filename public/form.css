@@ -11,6 +11,11 @@
   display: grid;
   gap: 0.5rem;
 }
+.checkbox-field {
+  width: fit-content;
+  display: flex;
+  gap: 0.5rem;
+}
 
 input.styled,
 select.styled {

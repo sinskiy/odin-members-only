@@ -5,6 +5,12 @@ async function getAllClubs() {
   return rows;
 }
 
+async function getClubById(id) {
+  const { rows } = await pool.query("SELECT * FROM clubs WHERE id = $1", [id]);
+  const club = rows[0];
+  return club;
+}
+
 async function getUserByUsername(username) {
   const { rows } = await pool.query("SELECT * FROM users WHERE username = $1", [
     username,
@@ -19,11 +25,31 @@ async function getUserById(id) {
   return user;
 }
 
-async function insertUser({ username, firstName, lastName, password }) {
+async function insertUser({
+  username,
+  firstName,
+  lastName,
+  password,
+  isAdmin,
+}) {
   await pool.query(
-    "INSERT INTO users (username, first_name, last_name, password) VALUES ($1, $2, $3, $4)",
-    [username, firstName, lastName, password],
+    "INSERT INTO users (username, first_name, last_name, password, is_admin) VALUES ($1, $2, $3, $4, $5)",
+    [username, firstName, lastName, password, isAdmin],
   );
 }
 
-module.exports = { getAllClubs, getUserByUsername, getUserById, insertUser };
+async function updateUserClubId(userId, clubId) {
+  await pool.query("UPDATE users SET club_id = $1 WHERE id = $2", [
+    clubId,
+    userId,
+  ]);
+}
+
+module.exports = {
+  getAllClubs,
+  getClubById,
+  getUserByUsername,
+  getUserById,
+  insertUser,
+  updateUserClubId,
+};

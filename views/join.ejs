@@ -1,0 +1,21 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <%- include('partials/head', { title: `Join club ${club.name}` }) %>
+    <link rel="stylesheet" href="/form.css" />
+  </head>
+  <body>
+    <%- include('partials/nav') %>
+    <main>
+      <%- include('partials/errors') %>
+      <h2 style="margin-bottom: 1rem">Join club <%= club.name %></h2>
+      <form action="/clubs/<%= club.id %>/join" method="post" class="form">
+        <div class="input-field">
+          <label for="passcode">secret passcode</label>
+          <input type="password" name="passcode" id="passcode" class="styled" />
+        </div>
+        <button type="submit" class="styled primary">submit</button>
+      </form>
+    </main>
+  </body>
+</html>

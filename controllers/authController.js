@@ -40,6 +40,10 @@ const validateUser = [
       return value === req.body.password;
     })
     .withMessage("Passwords must match."),
+  body("isAdmin")
+    .optional()
+    .matches("on")
+    .withMessage("Is admin must be a boolean"),
 ];
 
 const signupPost = [
@@ -49,7 +53,7 @@ const signupPost = [
     if (!errors.isEmpty()) {
       return res.status(400).render("signup", { errors: errors.array() });
     }
-    const { username, firstName, lastName, password } = req.body;
+    const { username, firstName, lastName, password, isAdmin } = req.body;
     bcrypt.hash(password, 10, async (err, hashedPassword) => {
       if (err) {
         next(err);
@@ -60,6 +64,7 @@ const signupPost = [
           firstName,
           lastName,
           password: hashedPassword,
+          isAdmin,
         });
         res.redirect("/");
       } catch (err) {

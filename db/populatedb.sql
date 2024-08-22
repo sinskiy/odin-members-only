@@ -1,9 +1,13 @@
 CREATE TABLE IF NOT EXISTS clubs (
   id INT PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
-  name VARCHAR(30) NOT NULL
+  name VARCHAR(30) NOT NULL,
+  passcode VARCHAR(255) NOT NULL
 );
 
-INSERT INTO clubs (name) VALUES ('red'), ('green'), ('blue');
+INSERT INTO clubs (name, passcode) VALUES
+  ('red', 'The red carpet can hide more than just blood stains.'),
+  ('green', 'Green is the prime color of the world and that from which its loveliness arises.'),
+  ('blue', 'Blue that will always be there as it is now after all man’s destruction is finished.');
 
 CREATE TABLE IF NOT EXISTS users (
   id INT PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
